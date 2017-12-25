@@ -44,9 +44,9 @@ $(document).ready(function () {
 
     $('#ght-navbar').removeClass("navbar-dark");
     $('#ght-navbar').addClass("navbar-light ght-add-navbar");
+});
 
-    $('#ajouter').click(function(){
+function mapLatLng() {
         console.log(posLat);
         console.log(posLng);
-        });
-});
+}

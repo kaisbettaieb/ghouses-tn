@@ -21,8 +21,8 @@ class GhouseForm extends AbstractType
             ->add('nom', TextType::class)
             ->add('nom_prenom_prop', TextType::class)
             ->add('address', TextType::class)
-            ->add('mapLng', NumberType::class, array('scale' => 20, 'attr'=> array('style'=>'display:none;')))
-            ->add('mapLat', NumberType::class, array('scale' => 20, 'attr'=> array('style'=>'display:none;')))
+            ->add('mapLng', NumberType::class, array('scale' => 20,  'required' => false))
+            ->add('mapLat', NumberType::class, array('scale' => 20,  'required' => false))
             ->add('homeNum', NumberType::class)
             ->add('mobileNum', NumberType::class)
             ->add('aPropos', TextareaType::class)
@@ -30,8 +30,7 @@ class GhouseForm extends AbstractType
             ->add('conditions', TextareaType::class)
             ->add('email', EmailType::class)
             ->add('mots_cles', TextareaType::class)
-            ->add('prixNuit', NumberType::class)
-            ->add('GhouseAdmin', HiddenType::class );
+            ->add('prixNuit', NumberType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
