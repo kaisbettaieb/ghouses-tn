@@ -113,6 +113,13 @@ class Ghouse
     private $mots_cles;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string")
+     */
+    private $email;
+
+    /**
      * Get id
      *
      * @return int
@@ -420,6 +427,30 @@ class Ghouse
     public function setMotsCles($MotsCles)
     {
         $this->mots_cles = $MotsCles;
+
+        return $this;
+    }
+
+    /**
+     * Get Email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set Email
+     *
+     * @param string $Email
+     *
+     * @return Ghouse
+     */
+    public function setEmail($Email)
+    {
+        $this->email = $Email;
 
         return $this;
     }

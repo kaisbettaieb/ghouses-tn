@@ -1,13 +1,10 @@
 <?php
 
 namespace ApplicationBundle\Controller;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use ApplicationBundle\Form\GhouseForm;
 use ApplicationBundle\Entity\Ghouse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class GhouseController extends Controller
 {
@@ -19,7 +16,11 @@ class GhouseController extends Controller
     public function ghouseAddAction(Request $request)
     {
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') && $this->get('security.authorization_checker')->isGranted('ROLE_GHADMIN')) {
-
+            $ghadmin = $this->getUser();
+            $ghouse = new Ghouse();
+            $ghouse_add_form = $this->createForm(GhouseForm::class, $ghouse);
+            $ghouse_add_form->get('GhouseAdmin')->setData($ghadmin->getId());
+            $ghouse_add_form->handleRequest($request);
             /*$ghouse_add_form = $this->get('form.factory')
                 ->createNamedBuilder('ghouse_add_form')
                 ->add('nom_maison', TextType::class)
@@ -32,7 +33,7 @@ class GhouseController extends Controller
                 ->add('a_propos', TextareaType::class)
                 ->add('f')
                 ->getForm();*/
-            return $this->render('@Application/GhouseView/ajouter-ghouse.html.twig');
+            return $this->render('@Application/GhouseView/ajouter-ghouse.html.twig', array('ghouse_add_form' =>$ghouse_add_form->createView()));
         }
         return $this->redirectToRoute('application_front_homepage');
     }
