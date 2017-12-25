@@ -41,11 +41,6 @@ function placeMarkerAndPanTo(latLng, map) {
 
 
 $(document).ready(function () {
-    var i = 0;
-    $(document).on("click", "#ajouter-offre", function () {
-        $('#ajouter-offre-form').append('<input placeholder="Autre Offre" type="text" id="ght-offre' + i + '" class="form-control">');
-        i++;
-    });
 
     $('#ght-navbar').removeClass("navbar-dark");
     $('#ght-navbar').addClass("navbar-light ght-add-navbar");

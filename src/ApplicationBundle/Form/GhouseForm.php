@@ -3,6 +3,7 @@
 namespace ApplicationBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -20,8 +21,8 @@ class GhouseForm extends AbstractType
             ->add('nom', TextType::class)
             ->add('nom_prenom_prop', TextType::class)
             ->add('address', TextType::class)
-            ->add('mapLng', NumberType::class, array('scale' => 20))
-            ->add('mapLat', NumberType::class, array('scale' => 20))
+            ->add('mapLng', NumberType::class, array('scale' => 20, 'attr'=> array('style'=>'display:none;')))
+            ->add('mapLat', NumberType::class, array('scale' => 20, 'attr'=> array('style'=>'display:none;')))
             ->add('homeNum', NumberType::class)
             ->add('mobileNum', NumberType::class)
             ->add('aPropos', TextareaType::class)
@@ -30,8 +31,7 @@ class GhouseForm extends AbstractType
             ->add('email', EmailType::class)
             ->add('mots_cles', TextareaType::class)
             ->add('prixNuit', NumberType::class)
-            ->add('GhouseAdmin', NumberType::class );
-
+            ->add('GhouseAdmin', HiddenType::class );
     }
 
     public function configureOptions(OptionsResolver $resolver)
