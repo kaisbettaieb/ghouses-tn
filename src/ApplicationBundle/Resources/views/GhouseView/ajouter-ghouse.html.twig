@@ -16,10 +16,10 @@
 <main class="mt-5">
     <div class="container mb-5">
         <h3 class="text-center mb-4 my-5">Ajouter une maison</h3>
-        {{ form_start(ghouse_add_form, {'attr' : {'onsubmit' : 'mapLatLng();'} }) }}
+        {{ form_start(ghouse_add_form, {'attr' : {'id' : 'ghouse_add_form' } }) }}
         <div class="md-form">
             <i class="fa fa-home prefix grey-text"></i>
-            {{ form_widget(ghouse_add_form.nom, {'attr': { 'class' : 'form-control' } }) }}
+            {{ form_widget(ghouse_add_form.nom, {'attr': { 'class' : 'form-control'} }) }}
             <label>Nom de la maison</label>
         </div>
         <div class="md-form">
@@ -71,7 +71,8 @@
         <div class="md-form">
             <i class="fa fa-lock prefix grey-text"></i>
             {{ form_widget(ghouse_add_form.mots_cles, {'attr': { 'class' : 'md-textarea', 'style' : 'height: 20px' } }) }}
-            <label>Les mots clés qui sont en relation avec votre maison, veuillez mettre des mots precis, veuillez mettre un mot dans chaque ligne </label>
+            <label>Les mots clés qui sont en relation avec votre maison, veuillez mettre des mots precis, veuillez
+                mettre un mot dans chaque ligne </label>
         </div>
         <div class="md-form">
             {{ form_widget(ghouse_add_form.mapLat, {'attr': { 'style' : 'display:none' } }) }}
@@ -80,7 +81,7 @@
             {{ form_widget(ghouse_add_form.mapLng, {'attr': { 'style' : 'display:none' } }) }}
         </div>
         <div class="text-center">
-            <button class="btn btn-deep-orange"  type="submit">Envoyer</button>
+            <button class="btn btn-deep-orange" type="submit" id="ajouter">Envoyer</button>
         </div>
         {{ form_end(ghouse_add_form) }}
     </div>
@@ -93,24 +94,44 @@
         src="https://maps.google.com/maps/api/js?key=AIzaSyBKjHhqdkrPFmPrEmbVYMwTVoq-ku_cUQI&callback=initMap"></script>
 <script type="text/javascript" src="{{ asset('assets/js/ajouter-ghouse.js') }}"></script>
 {% if is_added == "Error" %}
-<script>
-    $(document).ready(function () {
-        {
-            $.notify({
-                title: '<strong>Error</strong>',
-                message: 'Un probleme est subis lors de votre action, veuillez ressayer plus tard.'
-            }, {
-                offset: {
-                    x: 5,
-                    y: 70
-                },
-                type: 'danger'
-            });
-        }
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Error</strong>',
+                    message: 'Un probleme est subis lors de votre action, veuillez ressayer plus tard.'
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70
+                    },
+                    type: 'danger'
+                });
+            }
 
 
-    });
-</script>
+        });
+    </script>
+{% endif %}
+{% if is_added == "Yes" %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Success</strong>',
+                    message: 'Votre maison a été ajouter, mais pour raisons de securité le maison doit etre vlider par un admin.'
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70
+                    },
+                    type: 'info'
+                });
+            }
+
+
+        });
+    </script>
 {% endif %}
 </body>
 

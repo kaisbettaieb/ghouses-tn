@@ -41,12 +41,26 @@ function placeMarkerAndPanTo(latLng, map) {
 
 
 $(document).ready(function () {
-
+    /* navbar color class */
     $('#ght-navbar').removeClass("navbar-dark");
     $('#ght-navbar').addClass("navbar-light ght-add-navbar");
-});
 
-function mapLatLng() {
-        console.log(posLat);
-        console.log(posLng);
-}
+    $('#ghouse_add_form').submit(function(e){
+        if (posLat === undefined || posLng === undefined){
+                    $.notify({
+                        title: '<strong>Error</strong>',
+                        message: "Il faut que vous choisit la position de votre maison dans google map."
+                    }, {
+                        offset: {
+                            x: 5,
+                            y: 70
+                        },
+                        type: 'danger'
+                    });
+            e.preventDefault();
+            return false;
+        }
+        document.getElementById('ghouse_form_mapLat').value = posLat;
+        document.getElementById('ghouse_form_mapLng').value = posLng;
+    });
+});

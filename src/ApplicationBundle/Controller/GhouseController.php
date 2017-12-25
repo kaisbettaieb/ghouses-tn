@@ -21,24 +21,26 @@ class GhouseController extends Controller
             $ghadmin = $this->getUser();
             $ghouse = new Ghouse();
             $ghouse_add_form = $this->createForm(GhouseForm::class, $ghouse);
-            //$ghouse_add_form->get('GhouseAdmin')->setData($ghadmin->getId());
             $ghouse_add_form->handleRequest($request);
-            if ($ghouse_add_form->isSubmitted()) {
-                if ($ghouse_add_form->isValid()) {
-                    $ghouse->setGhouseAdmin($ghadmin->getId());
-                    try {
-                        $em = $this->getDoctrine()->getManager();
-                        $em->persist($ghouse);
-                        $is_added = "Yes";
-                    } catch (\Doctrine\DBAL\DBALException $e) {
-                        $is_added = "Error";
-                    }
-                }
-                $is_added = "Error";
-            }
+            $is_added = $this->AddGhouse($ghouse_add_form, $ghadmin, $ghouse);
             return $this->render('@Application/GhouseView/ajouter-ghouse.html.twig', array('ghouse_add_form' => $ghouse_add_form->createView(),
                 'is_added' => $is_added));
         }
         return $this->redirectToRoute('application_front_homepage');
+    }
+    public function AddGhouse($ghouse_add_form, $ghadmin, $ghouse){
+        if ($ghouse_add_form->isSubmitted()) {
+            $ghouse->setGhouseAdmin($ghadmin->getId());
+            $ghouse->setIsValidated(0);
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($ghouse);
+                $em->flush();
+                return "Yes";
+            } catch (\Doctrine\DBAL\DBALException $e) {
+                return "Error";
+            }
+
+        }
     }
 }

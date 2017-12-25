@@ -120,6 +120,13 @@ class Ghouse
     private $email;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="is_validated", type="integer", options={"default" : 0})
+     */
+    private $is_validated;
+
+    /**
      * Get id
      *
      * @return int
@@ -463,6 +470,30 @@ class Ghouse
     public function getMotsCles()
     {
         return $this->mots_cles;
+    }
+
+    /**
+     * Set IsValidated
+     *
+     * @param int $IsValidated
+     *
+     * @return Ghouse
+     */
+    public function setIsValidated($IsValidated)
+    {
+        $this->is_validated = $IsValidated;
+
+        return $this;
+    }
+
+    /**
+     * Get IsValidated
+     *
+     * @return int
+     */
+    public function getIsValidated()
+    {
+        return $this->is_validated;
     }
 
     public function getRoles()
