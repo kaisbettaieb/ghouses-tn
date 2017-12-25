@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}Home{% endblock %}</title>
+    {% include '@Application/FrontView/header.html.twig' %}
+</head>
+<body id="bg-main">
+<header>
+{% include '@Application/FrontView/navbar.html.twig' %}
+<!--Mask-->
+<div id="ght-bg" class="view hm-blue-slight">
+
+    <div class="container-fluid full-bg-img d-flex align-items-center justify-content-center">
+
+        <div class="row d-flex justify-content-center">
+
+            <div class="col-md-9 text-center">
+                <!-- Heading -->
+                <!-- <h2  class="display-3 font-bold cyan-text mb-2" >GuestHouses Tunisia</h2>-->
+                <img src="{{ asset('assets/img/bg/logo.png') }}" class="img-fluid wow fadeInDown">
+                <!-- Divider -->
+                <hr class="hr-light my-4">
+                <!-- Description -->
+                <h4 class="white-text my-4">Reservez des maisons d'hôte uniques </br>partout en Tunisie.</h4>
+
+            </div>
+            <div class="row d-flex justify-content-center">
+                <a href="#ght-featured-houses">
+                    <button class="btn btn-outline-white "><i class="fa fa-book ml-2"></i>Decoverez Notre
+                        Collection
+                    </button>
+                </a>
+            </div>
+            <!-- !Description -->
+
+        </div>
+
+    </div>
+</div>
+</header>
+<!--Main layout-->
+<main class="mt-5">
+    <div class="container">
+        <!--  id="bg-content" -->
+
+        <!--Section: Featured guest houses-->
+        <section id="ght-featured-houses" class="wow fadeInDown">
+            <!-- Heading -->
+            <h2 class="mb-4 text-center" id="bg-discover">Decouvrez les maisons d'hôtes:</h2>
+            <p class="text-center" style="color:#a0a2ab;"> lorm ipsum kadf ijka badala dkgi </p>
+            <hr class="my-4">
+
+            <h3 class="mb-0" id="display-10">Les meilleures maisons de cette semaine:</h3>
+            <!-- Voir plus -->
+            <div class="d-flex justify-content-end">
+                <a href="all-ghouses.html" class="d-flex flex-row-reverse">
+                    <h6 class="waves-effect waves-dark p-2">Voir Plus <i class="fa fa-chevron-right"></i></h6>
+                </a>
+            </div>
+            <!--./Voir plus -->
+            <!--./Featured carousel -->
+            <ul id="featuredCarousel" class="row ">
+                <!--Carousel item-->
+                <li>
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/1.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                </li>
+                <!--/.Carousel item-->
+
+                <!--Carousel item-->
+                <li>
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/2.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                </li>
+                <!--/.Carousel item-->
+
+                <!--Carousel item-->
+                <li>
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/3.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Carousel item-->
+                </li>
+                <li>
+                    <!--Carousel item-->
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/4.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Carousel item-->
+                </li>
+                <li>
+                    <!--Carousel item-->
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/5.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Carousel item-->
+                </li>
+                <li>
+                    <!--Carousel item-->
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/6.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Carousel item-->
+                </li>
+            </ul>
+            <!--./Featured Carousel -->
+
+        </section>
+        <!--./Section: Featured guest houses-->
+
+        <hr class="my-3">
+        <!--Section: Newest guest houses-->
+        <section id="ght-newest-houses" class="wow fadeInLeft">
+            <h3 class="mb-0" id="display-10">Les dernieres maisons ajoutées:</h3>
+            <!-- Voir plus -->
+            <div class="d-flex justify-content-end">
+                <a href="all-ghouses.html" class="d-flex flex-row-reverse">
+                    <h6 class="waves-effect waves-dark p-2">Voir Plus <i class="fa fa-chevron-right"></i></h6>
+                </a>
+            </div>
+            <!--./Voir plus -->
+            <!--./Newest carousel -->
+            <ul id="newestCarousel" class="row">
+                <li>
+                    <!--Carousel item-->
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/1.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Carousel item-->
+                </li>
+                <li>
+                    <!--Carousel item-->
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/2.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Carousel item-->
+                </li>
+                <li>
+                    <!--Carousel item-->
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/3.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Carousel item-->
+                </li>
+                <li>
+                    <!--Carousel item-->
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/4.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Carousel item-->
+                </li>
+                <li>
+                    <!--Carousel item-->
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/5.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Carousel item-->
+                </li>
+                <li>
+                    <!--Carousel item-->
+                    <div class="card">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ asset('assets/img/gh-snaps/6.jpg') }}" height="150" width="280" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Social shares button-->
+                            <a class="activator"><h5 class="pink-text"><i class="fa fa-cutlery"></i> Culinary</h5><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
+                                                                                     aria-hidden="true"></i><i
+                                        class="fa fa-star-o" aria-hidden="true"></i></a>
+
+                            <!--Title-->
+                            <h4 class="card-title">Maison a Carthage</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text ">test exemple.</p>
+                            <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                            </a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Carousel item-->
+                </li>
+            </ul>
+            <!--./Newest Carousel -->
+
+
+        </section>
+        <!--./Section: Newest guest houses-->
+
+        <hr class="my-4">
+    </div>
+</main>
+</body>
+<!-- Parallax -->
+<div id="parallax" class="view hm-blue-slight">
+    <div class="mask flex-center">
+        <div class="row">
+            <!-- Description -->
+            <h4 class="white-text my-4">Bon Séjours</br> en Tunisie.</h4>
+            <!-- Divider -->
+        </div>
+    </div>
+</div>
+
+<body>
+<main class="mt-5">
+    <div class="container">
+        <!-- id="bg-content" -->
+        <hr class="my-3">
+        <!--Section: Newest Comments-->
+        <section id="ght-comments" class="wow fadeInUp">
+            <h3 class="mb-3 waves-effect waves-dark ">Activités des utilisateurs:</h3>
+            <!--./Voir plus -->
+            <div class="row">
+                <!--latestComments carousel -->
+                <div class="col-6">
+                    <h6 class="waves-effect waves-dark p-2">Les derniers commentaires:</h6>
+                    <a href="{{ url('application_ghouse_front', {'id':'1'}) }}" class="d-flex flex-row-reverse">
+                        <h6 class="waves-effect waves-dark p-2">Voir Plus <i class="fa fa-chevron-right"></i></h6>
+                    </a>
+                    <ul id="latestComments">
+                        <!--Comments -->
+                        <li>
+                            <div class="media mb-1">
+                                <a class="media-left waves-dark">
+                                    <img class="rounded-circle"
+                                         src="https://mdbootstrap.com/img/Photos/Avatars/avatar-13.jpg"
+                                         alt="Generic placeholder image">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Nom Prenom</h4>
+                                    <p>A commenté sur [Maison a Carthage]</p>
+                                    <ul class="rating inline-ul">
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                    <p>1er Comment</p>
+                                </div>
+                            </div>
+                        </li>
+                        <!--./Comments -->
+                        <!--Comments -->
+                        <li>
+                            <div class="media mb-1">
+                                <a class="media-left waves-dark">
+                                    <img class="rounded-circle"
+                                         src="https://mdbootstrap.com/img/Photos/Avatars/avatar-7.jpg"
+                                         alt="Generic placeholder image">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Nom Prenom</h4>
+                                    <p>A commenté sur [Maison a Carthage]</p>
+                                    <ul class="rating inline-ul">
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                    <p>2eme Comment </p>
+                                </div>
+                            </div>
+                        </li>
+                        <!--./Comments -->
+                        <!--Comments -->
+                        <li>
+                            <div class="media mb-1">
+                                <a class="media-left waves-dark">
+                                    <img class="rounded-circle"
+                                         src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg"
+                                         alt="Generic placeholder image">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Nom Prenom</h4>
+                                    <p>A commenté sur [Maison a Carthage]</p>
+                                    <ul class="rating inline-ul">
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star amber-text"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                    <p>3eme Comments</p>
+                                </div>
+                            </div>
+                        </li>
+                        <!--./Comments -->
+                    </ul>
+                </div>
+                <!--./latestComments carousel -->
+                <div class="col-6 ">
+                    <h6 class="waves-effect waves-dark p-2">Les membres les plus actifs : </h6>
+                    <img class="rounded-circle ml-3 mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-7.jpg"
+                         alt="Generic placeholder image">
+                    <img class="rounded-circle ml-3 mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-7.jpg"
+                         alt="Generic placeholder image">
+                    <img class="rounded-circle ml-3 mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-7.jpg"
+                         alt="Generic placeholder image">
+                    <img class="rounded-circle ml-3 mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-7.jpg"
+                         alt="Generic placeholder image">
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<!--./Main layout-->
+{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+
+<!--Modal: Login / Register Form-->
+<div class="modal fade left" id="registerform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-info modal-notify modal-full-height modal-left " role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-bold white-text">S'inscrire</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="white-text" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                {{ form_start(register_form) }}
+                <div class="md-form">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    {{ form_widget(register_form.username, {'attr' : { 'class' : 'form-control' }}) }}
+                    <label for="register_form_username">Votre
+                        Username</label>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-envelope prefix grey-text"></i>
+                    {{ form_widget(register_form.email, {'attr' : { 'class' : 'form-control' }}) }}
+                    <label for="register_form_email">Votre
+                        Email</label>
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    {{ form_widget(register_form.password, {'attr' : { 'class' : 'form-control' }}) }}
+                    <label for="register_form_password">Votre
+                        Password</label>
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    {{ form_widget(register_form.verify_password, {'attr' : { 'class' : 'form-control' }}) }}
+                    <label for="register_form_verify_password">Verifiez Password</label>
+                </div>
+
+                <div class="modal-footer d-flex justify-content-center">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="checkbox">
+                                <label>
+                                    {{ form_widget(register_form.check_conditions, {'attr' : { 'class' : 'form-control' }}) }}
+                                    <span class="box"></span>
+                                    Je certifie avoir lu et accepté les <a href="#!">Conditions Générales
+                                        d'Utilisation </a></label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-blue" id="register">S'inscrire</button>
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(register_form) }}
+                <div class="row ml-3 mr-3">
+                    <div class="col-md-12" id="check_conds">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="checkbox_conds"
+                             style="display: none;">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>Erreur!</strong> Il faut que vous acceptez les <a
+                                    href="#!" class="alert-link">Conditions
+                                Générales d'Utilisation</a>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal: Login / Register Form-->
+{% endif %}
+{% include '@Application/FrontView/footer.html.twig' %}
+<script>
+    $(document).ready(function () {
+        $("#register").on("click", function () {
+            if (!register_form_check_conditions.checked) {
+                $('#checkbox_conds').appendTo('#check_conds').show('slow');
+            }
+        });
+    });
+</script>
+<script type="text/javascript" src="{{ asset('assets/js/bootstrap-notify.js') }}"></script>
+{{ include('@Application/FrontView/home_scripts.html.twig') }}
+
+</body>
+
+</html>

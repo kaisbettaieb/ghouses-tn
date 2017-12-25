@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}Espace Pro | Login{% endblock %}</title>
+    {% include '@Application/PropBackView/header.html.twig' %}
+
+</head>
+<body>
+<div class="">
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-nav-tabs">
+                            <div class="card-header" data-background-color="blue">
+                                <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper">
+                                        <span class="nav-tabs-title">Tasks:</span>
+                                        <ul class="nav nav-tabs" data-tabs="tabs">
+                                            <li class="active">
+                                                <a href="#login" data-toggle="tab">
+                                                    <i class="material-icons">person</i> Se connecter
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="#register" data-toggle="tab">
+                                                    <i class="material-icons">code</i> S'inscrire
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="login">
+                                        {{ form_start(login_form, {'action': url('application_propback_login') }) }}
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Email</label>
+                                                    {{ form_widget(login_form.email, {'attr': { 'class' : 'form-control'} }) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Password</label>
+                                                    {{ form_widget(login_form.password, {'attr': { 'class' : 'form-control'} }) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Se connecter</button>
+                                        <div class="clearfix"></div>
+                                        {{ form_end(login_form) }}
+                                    </div>
+                                    <div class="tab-pane" id="register">
+                                        {{ form_start(form, {'action': url('application_propBack_register') }) }}
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Email</label>
+                                                    {{ form_widget(form.email, {'attr': { 'class' : 'form-control'} }) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Password</label>
+                                                    {{ form_widget(form.password, {'attr': { 'class' : 'form-control'} }) }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Password une autre fois</label>
+                                                    {{ form_widget(form.verify_password, {'attr': { 'class' : 'form-control'} }) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">CIN</label>
+                                                    {{ form_widget(form.cin, {'attr': { 'class' : 'form-control'} }) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                                        <div class="clearfix"></div>
+                                        {{ form_end(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="pull-left">
+                <ul>
+                    <li>
+                        <a href="{{ url('application_front_homepage') }}">
+                            Accueil
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <p class="copyright pull-right">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                Developped by <a href="https://www.linkedin.com/in/kais-bettaieb-15810a119/">Kais Bettaieb</a>,
+                GuestHouses-Tunisia, tout droit reservé
+            </p>
+        </div>
+    </footer>
+</div>
+{% include '@Application/PropBackView/footer.html.twig' %}
+{% if ( is_registered == 'Error' or error )%}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Erreur</strong>',
+                    message: "Error, veuillez ressayer une autre fois"
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70,
+                    },
+                    type: 'danger'
+                });
+            }
+        });
+    </script>
+{% endif %}
+{% if is_registered == 'Yes' %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Success</strong>',
+                    message: "Felicitations, vous pouvez connecter!"
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70,
+                    },
+                    type: 'success'
+                });
+            }
+        });
+    </script>
+{% endif %}
+</body>
+</html>

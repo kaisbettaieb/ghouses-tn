@@ -1,0 +1,114 @@
+{% block footer %}
+<!--Footer-->
+
+<footer class="page-footer blue center-on-small-only unique-color-dark pt-0 wow fadeInUpBig">
+    <!-- Social buttons -->
+    <div class="unique-color">
+        <div class="container">
+            <!--Grid row-->
+            <div class="row py-4 d-flex align-items-center">
+
+                <!--Grid column-->
+                <div class="col-md-6 col-lg-5">
+                    <h6 class="mb-0 white-text my-2">Rester en Contact!</h6>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-6 col-lg-7 text-md-right">
+                    <!--Facebook-->
+                    <a class="icons-sm fb-ic"><i class="fa fa-facebook white-text mr-4"> </i></a>
+                    <!--Twitter-->
+                    <a class="icons-sm tw-ic"><i class="fa fa-twitter white-text mr-4"> </i></a>
+                    <!--Google +-->
+                    <a class="icons-sm gplus-ic"><i class="fa fa-google-plus white-text mr-4"> </i></a>
+                    <!--Linkedin-->
+                    <a class="icons-sm li-ic"><i class="fa fa-linkedin white-text mr-4"> </i></a>
+                    <!--Instagram-->
+                    <a class="icons-sm ins-ic"><i class="fa fa-instagram white-text mr-4"> </i></a>
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+        </div>
+    </div>
+    <!--./Social buttons -->
+    <!--Footer Links-->
+    <div class="container mt-5 mb-4 text-center text-md-left">
+        <div class="row mt-3">
+
+            <!--First column-->
+            <div class="col-md-3 col-lg-4 col-xl-3 mb-r">
+                <h6 class="title font-bold"><strong>GuestHouses Tunisia</strong></h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>Notre site a le but de lister tout les maisons d'hôtes present en tunisie.</p>
+            </div>
+            <!--/.First column-->
+
+            <!--Second column-->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-r">
+                <h6 class="title font-bold"><strong>Les maisons d'hôtes </strong></h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p><a href="ajouter-ghouse.html">Comment ajouter mon Maisons</a></p>
+                <p><a href="all-ghouse.html">Voir tout les Maisons</a></p>
+                <p><a href="#!">Signaler un Maison</a></p>
+            </div>
+            <!--/.Second column-->
+
+            <!--Third column-->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-r">
+                <h6 class="title font-bold"><strong>Liens utiles</strong></h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p><a  data-toggle="modal"  href="#login-register-form">Mon compte</a></p>
+                <p><a data-toggle="modal"  href="#login-register-form">S'inscrire</a></p>
+                <p><a href="#!">Chercher Membre</a></p>
+                <p><a href="#!">Conditions d'utilisatio</a></p>
+                <p><a href="contact.html">Aide</a></p>
+            </div>
+            <!--/.Third column-->
+
+            <!--Fourth column-->
+            <div class="col-md-4 col-lg-3 col-xl-3">
+                <h6 class="title font-bold"><strong>Contact</strong></h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p><i class="fa fa-home mr-3"></i> New York, NY 10012, US</p>
+                <p><i class="fa fa-envelope mr-3"></i> info@example.com</p>
+                <p><i class="fa fa-phone mr-3"></i> + XX XXX XXX XX</p>
+                <p><i class="fa fa-print mr-3"></i> + XX XXX XXX XX</p>
+            </div>
+            <!--/.Fourth column-->
+
+        </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <!--/.Footer Links-->
+
+    <!--Copyright-->
+    <div class="footer-copyright">
+        <div class="container-fluid">
+            © 2017 Copyright: <a href="#!"> GuestHouses Tunisia</a>, Développé par <a href="https://www.linkedin.com/in/kais-bettaieb-15810a119/">Kais Bettaieb </a>
+
+        </div>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+{% endblock %}
+<!--Modal: Login / Register Form-->
+{% block javascripts %}
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{ asset('assets/js/mdb.min.js') }}"></script>
+    <!-- Carousel Javascript -->
+    <script type="text/javascript" src="{{ asset('assets/js/lightslider.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/carousel.js') }}"></script>
+{% endblock %}

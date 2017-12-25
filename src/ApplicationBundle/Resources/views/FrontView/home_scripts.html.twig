@@ -1,0 +1,61 @@
+{% if is_connected == "Yes" %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Success</strong>',
+                    message: 'Les données que vous avez saisi, sont corrects, vous etes connectés..'
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70
+                    },
+                    type: 'success'
+                });
+            }
+
+
+        });
+    </script>
+{% endif %}
+{% if is_connected == "Error" %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Error</strong>',
+                    message: 'Les données que vous avez saisi, sont eronnées, veuillez ressayer plus tard.'
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70
+                    },
+                    type: 'warning'
+                });
+            }
+
+
+        });
+    </script>
+{% endif %}
+
+{% if is_registered == "No" %}
+{% else %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Error</strong>',
+                    message: '{{ is_registered }}'
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70
+                    },
+                    type: 'warning'
+                });
+            }
+        });
+    </script>
+{% endif %}
+

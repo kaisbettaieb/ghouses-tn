@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"/>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>GuestHouse-TN | Espace Utilisateur</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
+    {% include '@Application/PropBackView/header.html.twig' %}
+</head>
+
+<body>
+<div class="wrapper">
+    {{ include('@Application/UserBackView/sidebar.html.twig') }}
+    <div class="main-panel">
+        {{ include('@Application/UserBackView/navbar.html.twig') }}
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header" data-background-color="blue">
+                                <h4 class="title">Edit Profile</h4>
+                                <p class="category">Complete your profile</p>
+                            </div>
+                            <div class="card-content">
+                                <h6>Changer Email</h6>
+                                {{ form_start(edit_email_form, {'attr': { 'name':'edit_email_form' }}) }}
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Email</label>
+                                                {{ form_widget(edit_email_form.email, {'attr': { 'class' : 'form-control'} }) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Verifier Email</label>
+                                                {{ form_widget(edit_email_form.verify_email, {'attr': { 'class' : 'form-control'} }) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6>Ancien Email:</h6>
+                                        <input type="text" class="form-control" placeholder="{{ app.user.email }}"
+                                               readonly disabled>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary pull-right">Changer Email
+                                        </button>
+                                    </div>
+                                </div>
+                                {{ form_end(edit_email_form) }}
+                                <h6>Changer Password</h6>
+                                {{ form_start(edit_password_form, {'attr': { 'name':'edit_password_form' }}) }}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {{ form_widget(edit_password_form.old_password, {'attr': { 'class' : 'form-control', 'placeholder' : 'votre Ancien Password'} }) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Password</label>
+                                            {{ form_widget(edit_password_form.password, {'attr': { 'class' : 'form-control' } }) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Verifier Password</label>
+                                            {{ form_widget(edit_password_form.verify_password, {'attr': { 'class' : 'form-control' } }) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary pull-right">Changer Password
+                                        </button>
+                                    </div>
+                                </div>
+                                {{ form_end(edit_password_form) }}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-profile">
+                            <div class="card-avatar">
+                                <a href="#pablo">
+                                    <img class="img" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-13.jpg"/>
+                                </a>
+                            </div>
+                            <div class="content">
+                                <h6 class="category text-gray"></h6>
+                                <h4 class="card-title">Changer votre Photo</h4>
+                                <p class="card-content">
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-primary">
+                                            Browse&hellip; <input type="file" id="photoEdit" name="_photoEdit"
+                                                                  style="display: none;"
+                                                                  accept=".png, .jpeg, .jpg, .gif">
+                                        </span>
+                                    </label>
+                                    <input type="text" class="form-control" name="_photoName" id="photoName" readonly>
+                            </div>
+                            </p>
+                            <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="pull-left">
+                <ul>
+                    <li>
+                        <a href="{{ url('application_propback_dashboard') }}">
+                            Accueil
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <p class="copyright pull-right">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                Developped by <a href="https://www.linkedin.com/in/kais-bettaieb-15810a119/">Kais Bettaieb</a>,
+                GuestHouses-Tunisia, tout droit reservé
+            </p>
+        </div>
+    </footer>
+</div>
+</div>
+{% include '@Application/PropBackView/footer.html.twig' %}
+<script>
+    $(function () {
+        $(document).on('change', '#photoEdit', function () {
+            var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+        });
+        // We can watch for our custom `fileselect` event like this
+        $(document).ready(function () {
+            $('#photoEdit').on('fileselect', function (event, numFiles, label) {
+
+                var input = $('#photoName'),
+                    log = numFiles > 1 ? numFiles + ' files selected' : label;
+                input.val(log);
+            });
+        });
+    });
+</script>
+{% if ( email_changed== 'Error') %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Erreur</strong>',
+                    message: "Erreur,l'adresse mail ne peut pas etre modifier, veuillez essayer plus tard"
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70,
+                    },
+                    type: 'danger'
+                });
+            }
+        });
+    </script>
+{% endif %}
+{% if ( email_changed== 'Yes') %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Success</strong>',
+                    message: "Votre email a ete bien modifier."
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70,
+                    },
+                    type: 'success'
+                });
+            }
+        });
+    </script>
+{% endif %}
+{% if ( email_changed == 'DontMatch') %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Erreur</strong>',
+                    message: "Error, veuillez verifier l'email que vous avez saisi"
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70,
+                    },
+                    type: 'warning'
+                });
+            }
+        });
+    </script>
+{% endif %}
+{% if ( email_changed== 'Exist') %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Erreur</strong>',
+                    message: "Cette email existe deja, veuillez essayer avec une autre adresse mail."
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70,
+                    },
+                    type: 'danger'
+                });
+            }
+        });
+    </script>
+{% endif %}
+{% if ( password_changed== 'DontMatch') %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Erreur</strong>',
+                    message: "Error, veuillez verifier la nouvelle password que vous avez saisi."
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70,
+                    },
+                    type: 'warning'
+                });
+            }
+        });
+    </script>
+{% endif %}
+{% if ( password_changed== 'Yes') %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Success</strong>',
+                    message: "Votre password a ete bien modifier."
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70,
+                    },
+                    type: 'success'
+                });
+            }
+        });
+    </script>
+{% endif %}
+{% if ( password_changed== 'Error') %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Erreur</strong>',
+                    message: "Error,le password ne peut pas etre modifier, veuillez essayer plus tard"
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70,
+                    },
+                    type: 'danger'
+                });
+            }
+        });
+    </script>
+{% endif %}
+{% if ( password_changed== 'FailPassword') %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Erreur</strong>',
+                    message: "Error, veuillez verifier votre ancien password."
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70,
+                    },
+                    type: 'danger'
+                });
+            }
+        });
+    </script>
+{% endif %}
+</body>
+
+</html>

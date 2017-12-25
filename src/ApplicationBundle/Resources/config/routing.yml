@@ -1,0 +1,44 @@
+application_front_homepage:
+    path:     /
+    defaults: { _controller: ApplicationBundle:FrontView:home }
+
+#routing pour simple utilisateur
+application_userback_dashboard:
+    path:     /userDashboard/{id}
+    defaults: { _controller: ApplicationBundle:UserBack:profileDashboard }
+application_userback_editprofile:
+    path:     /editProfile/{id}
+    defaults: { _controller: ApplicationBundle:UserBack:editProfile }
+application_userback_profile:
+    path:     /profile/{username}
+    defaults: { _controller: ApplicationBundle:UserBack:profile }
+#application_userback_editemail:
+    #path:     /editProfile/editEmail
+    #defaults: { _controller: ApplicationBundle:UserBack:editEmail }
+
+    #routing pour proprietaire hote
+application_propback_login:
+    path:     /propLogin
+    defaults: { _controller: ApplicationBundle:PropBack:login }
+application_propback_dashboard:
+    path:     /propDashboard
+    defaults: { _controller: ApplicationBundle:PropBack:dashboard }
+application_propback_maison:
+    path:     /propMaison
+    defaults: { _controller: ApplicationBundle:PropBack:dashboardMaison }
+application_propBack_commentaires:
+    path:     /propCommentaires
+    defaults: { _controller: ApplicationBundle:PropBack:dashboardCommentaires}
+application_propBack_register:
+    path:     /propRegister
+    defaults: { _controller: ApplicationBundle:PropBack:register }
+
+    #routing pour guest house
+application_ghouse_front:
+    path:     /ghouse/{id}
+    defaults: { _controller: ApplicationBundle:Ghouse:ghouse }
+application_ghouse_add:
+    path:     /ghouseAdd
+    defaults: { _controller: ApplicationBundle:Ghouse:ghouseAdd }
+application_logout:
+    path:     /logout

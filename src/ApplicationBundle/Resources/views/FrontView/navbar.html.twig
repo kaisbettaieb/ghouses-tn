@@ -1,0 +1,115 @@
+<!--Main Navigation-->
+{% block navbar %}
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar smooth-scroll" id="ght-navbar">
+            <div class="container">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="{{ url('application_front_homepage') }}">GuestHouses Tunisia</a>
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation"><span
+                            class="navbar-toggler-icon"></span></button>
+
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Links -->
+                    <ul class="navbar-nav ml-auto">
+                        <a href="ajouter-ghouse.html">
+                            <button class="btn btn-outline-white btn-sm my-0">Trouver une maison d'hotes</button>
+                        </a>
+                        <a href="contact.html">
+                            <button class="btn btn-outline-white btn-sm my-0">Questions fréquentes</button>
+                        </a>
+                        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a href="{{ url('application_propback_login') }}">
+                                <button class="btn btn-outline-white btn-sm my-0">Espace pro</button>
+                            </a>
+                        {% endif %}
+                        <div class="dropdown">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                {% if is_granted(expression(
+                                '"ROLE_GHUSER" in roles'
+                                )) %}
+                                    <a href="#" class="dropdown-toggle btn btn-outline-white btn-sm my-0"
+                                       id="login-user"
+                                       data-toggle="dropdown"><b>Espace particulier</b> <span class="caret"></span></a>
+                                    <ul id="login-dp" class="dropdown-menu my-2">
+                                        <li id="dp-menu">
+                                            <a class="dropdown-item"
+                                               href="{{ url('application_userback_dashboard', {'id' : app.user.id}) }}">
+                                                Profile</a><br>
+                                            <a class="dropdown-item" href="#!">Wish list</a>
+                                            <a class="dropdown-item"
+                                               href="{{ url('application_userback_dashboard', {'id': app.user.id }) }}">Dashboard</a>
+                                            <a class="dropdown-item"
+                                               href="{{ url('application_userback_dashboard', {'id': app.user.id }) }}">Messages</a>
+                                            <div class="dropdown-item" class="dropdown-divider"></div>
+                                            <a href="{{ url('application_logout') }}">Se deconnecter</a>
+                                        </li>
+                                    </ul>
+                                {% endif %}
+                                {% if is_granted(expression(
+                                '"ROLE_GHADMIN" in roles'
+                                )) %}
+                                    <a href="#" class="dropdown-toggle btn btn-outline-white btn-sm my-0"
+                                       id="login-user"
+                                       data-toggle="dropdown"><b>Espace Pro</b> <span class="caret"></span></a>
+                                    <ul id="login-dp" class="dropdown-menu my-2">
+                                        <li id="dp-menu">
+                                            <a class="dropdown-item"
+                                               href="{{ url('application_ghouse_add') }}">
+                                                AJOUTER MAISON D'HOTE</a><br>
+                                            <a class="dropdown-item"
+                                               href="{{ url('application_propback_dashboard') }}">Dashboard</a>
+                                            <a class="dropdown-item"
+                                               href="{{ url('application_propback_dashboard') }}">Messages</a>
+                                            <div class="dropdown-item" class="dropdown-divider"></div>
+                                            <a href="{{ url('application_logout') }}">Se deconnecter</a>
+                                        </li>
+                                    </ul>
+                                {% endif %}
+                            {% else %}
+                                <a href="#" class="dropdown-toggle btn btn-outline-white btn-sm my-0" id="login-user"
+                                   data-toggle="dropdown"><b>Espace particulier</b> <span class="caret"></span></a>
+                                <ul id="login-dp" class="dropdown-menu my-2">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12" id="login-dp-from">
+                                                {{ form_start(login_form, {'action': url('application_front_homepage'), 'attr': { 'class' : 'form' } }) }}
+                                                <div class="form-group">
+                                                    {{ form_widget(login_form.username, {'attr': { 'class' : 'form-control', 'placeholder' : 'Username' } }) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form_widget(login_form.password, {'attr': { 'class' : 'form-control', 'placeholder' : 'password'} }) }}
+                                                    <div class="help-block text-right"><a href="">Mot de passe oublie
+                                                            ?</a></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-outline-white btn-block">Se
+                                                        connecter
+                                                    </button>
+                                                </div>
+                                                {{ form_end(login_form) }}
+                                                <hr class="hr-light">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href="" class="pull-right btn btn-default btn-rounded"
+                                                   data-toggle="modal" data-target="#registerform">S'inscrire?</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </ul>
+                </div>
+                <!-- Collapsible content -->
+            </div>
+        </nav>
+        <!--/.Navbar-->
+    <!--Main Navigation-->
+{% endblock %}

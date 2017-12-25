@@ -1,0 +1,60 @@
+<div class="sidebar" data-color="blue" data-image="{{ asset('assets/dashboard/img/sidebar-1.jpg') }}">
+    <!--
+Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+Tip 2: you can also add an image using data-image tag
+-->
+    <div class="logo">
+        <a href="{{ url('application_front_homepage') }}" class="simple-text">
+            GuestHouses-TN
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            {% if  app.request.get('_route') == "application_userback_dashboard" %}
+            <li class="active">
+        {% else %}
+            <li>
+                {% endif %}
+                <a href="{{ url('application_userback_dashboard', { 'id' : app.user.id }) }}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Accueil</p>
+                </a>
+            </li>
+            {% if  app.request.get('_route') == "application_userback_editprofile" %}
+            <li class="active">
+                {% else %}
+            <li>
+                {% endif %}
+                <a href="{{ url('application_userback_editprofile', { 'id' : app.user.id}) }}">
+                    <i class="material-icons">person</i>
+                    <p>Modifier profile</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('application_propBack_commentaires') }}">
+                    <i class="material-icons">person</i>
+                    <p>Commentaires</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('application_propBack_commentaires') }}">
+                    <i class="material-icons">messages</i>
+                    <p>Messages</p>
+                </a>
+            </li>
+            <li>
+                <a href="./typography.html">
+                    <i class="material-icons">library_books</i>
+                    <p>Wish List</p>
+                </a>
+            </li>
+            <li class="active-pro">
+                <a href="{{ url('application_logout') }}">
+                    <i class="material-icons">unarchive</i>
+                    <p>Se deconnecter</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
