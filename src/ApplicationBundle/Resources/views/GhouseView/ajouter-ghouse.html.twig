@@ -81,14 +81,7 @@
             {{ form_widget(ghouse_add_form.mapLng, {'attr': { 'style' : 'display:none' } }) }}
         </div>
         <div class="md-form">
-            <div class="row">
-                <div class="col-md-4" id="container-image">
-                </div>
-                <div class="col-md-4">
-                    {{ form_widget(ghouse_add_form.gh_images) }}
-                </div>
-            </div>
-
+            {{ form_widget(ghouse_add_form.gh_images) }}
             <div class="text-center">
                 <a href="#" id="add_image" class="btn btn-default btn-md">Joindre une photo</a>
             </div>
@@ -129,11 +122,13 @@
         // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
         var index = $container.find(':input').length;
 
+        // $(this).parents("div.calendar-event").addClass("special-event");
+
         var $container_image;
+
         // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
         $('#add_image').click(function (e) {
             addImage($container);
-
             e.preventDefault(); // évite qu'un # apparaisse dans l'URL
             return false;
         });
@@ -157,7 +152,7 @@
 
             // On crée un objet jquery qui contient ce template
             var $prototype = $(template);
-
+            $prototype.addClass('md-form');
             // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
             addDeleteLink($prototype);
 

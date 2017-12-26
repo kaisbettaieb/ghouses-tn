@@ -1,4 +1,4 @@
-Symfony Standard Edition
+GuestHouses-TN
 ========================
 
 Welcome to the Symfony Standard Edition - a fully-functional Symfony

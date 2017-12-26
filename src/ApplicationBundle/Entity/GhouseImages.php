@@ -4,6 +4,7 @@ namespace ApplicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -35,10 +36,10 @@ class GhouseImages implements UserInterface, \Serializable
      * @var int
      *
      * @ORM\Column(name="ghouse_id", type="integer")
-     * @ORM\ManyToOne(targetEntity="ApplicationBundle\Entity\Ghouse", inversedBy="gh_images")
-     * @ORM\JoinColumn(name="ghouse_id", referencedColumnName="id")
      */
     private $ghouseId;
+
+
 
 
     /**
@@ -154,5 +155,17 @@ class GhouseImages implements UserInterface, \Serializable
         return $this->id;
     }
 
+    var $image;
+
+    public function getGhImage()
+    {
+        return $this->image;
+    }
+
+    public function setGhImage(GhouseImages $gh_images)
+    {
+        $this->image = $gh_images;
+        return $this;
+    }
 }
 

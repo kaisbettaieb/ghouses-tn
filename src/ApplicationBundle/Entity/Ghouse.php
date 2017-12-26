@@ -511,7 +511,6 @@ class Ghouse
      * @Assert\Type(type="ApplicationBundle\Entity\GhouseImages")
      * @Assert\Valid()
      * Un maison a beaucoup des images.
-     * @ORM\OneToMany(targetEntity="ApplicationBundle\Entity\GhouseImages", mappedBy="ghouseId",  cascade={"persist"})
      */
     protected $gh_images;
 
