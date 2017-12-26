@@ -3,6 +3,8 @@
 namespace ApplicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Ghouse
@@ -125,6 +127,10 @@ class Ghouse
      * @ORM\Column(name="is_validated", type="integer", options={"default" : 0})
      */
     private $is_validated;
+
+    public function __construct() {
+        $this->gh_images = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -499,6 +505,26 @@ class Ghouse
     public function getRoles()
     {
         return array('ROLE_GHOUSE');
+    }
+
+    /**
+     * @Assert\Type(type="ApplicationBundle\Entity\GhouseImages")
+     * @Assert\Valid()
+     * Un maison a beaucoup des images.
+     * @ORM\OneToMany(targetEntity="ApplicationBundle\Entity\GhouseImages", mappedBy="ghouseId",  cascade={"persist"})
+     */
+    protected $gh_images;
+
+
+    public function getGhImages()
+    {
+        return $this->gh_images;
+    }
+
+    public function setGhImages(GhouseImages $gh_images)
+    {
+        $this->gh_images->add($gh_images);
+        return $this;
     }
 }
 

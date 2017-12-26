@@ -2,7 +2,10 @@
 
 namespace ApplicationBundle\Form;
 
+use ApplicationBundle\Form\GhouseImagesForm;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -30,7 +33,12 @@ class GhouseForm extends AbstractType
             ->add('conditions', TextareaType::class)
             ->add('email', EmailType::class)
             ->add('mots_cles', TextareaType::class)
-            ->add('prixNuit', NumberType::class);
+            ->add('prixNuit', NumberType::class)
+            ->add('gh_images', CollectionType::class, array(
+                'entry_type' => GhouseImagesForm::class,
+                'allow_add' => true,
+                'prototype' => true));
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

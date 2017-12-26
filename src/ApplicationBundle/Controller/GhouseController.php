@@ -28,14 +28,17 @@ class GhouseController extends Controller
         }
         return $this->redirectToRoute('application_front_homepage');
     }
-    public function AddGhouse($ghouse_add_form, $ghadmin, $ghouse){
+
+    public function AddGhouse($ghouse_add_form, $user, $ghouse)
+    {
         if ($ghouse_add_form->isSubmitted()) {
-            $ghouse->setGhouseAdmin($ghadmin->getId());
+            $ghouse->setGhouseAdmin($user->getId());
             $ghouse->setIsValidated(0);
+            dump($ghouse);
             try {
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($ghouse);
-                $em->flush();
+                //$em->persist($ghouse);
+                //$em->flush();
                 return "Yes";
             } catch (\Doctrine\DBAL\DBALException $e) {
                 return "Error";

@@ -144,15 +144,14 @@
 <script>
     $(function () {
         $(document).on('change', '#photoEdit', function () {
-            var input = $(this),
-                numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            var input = $(this);
+            var numFiles = input.get(0).files ? input.get(0).files.length : 1;
+            var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
             input.trigger('fileselect', [numFiles, label]);
         });
         // We can watch for our custom `fileselect` event like this
         $(document).ready(function () {
             $('#photoEdit').on('fileselect', function (event, numFiles, label) {
-
                 var input = $('#photoName'),
                     log = numFiles > 1 ? numFiles + ' files selected' : label;
                 input.val(log);

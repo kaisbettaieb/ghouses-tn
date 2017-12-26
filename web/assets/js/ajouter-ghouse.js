@@ -45,18 +45,18 @@ $(document).ready(function () {
     $('#ght-navbar').removeClass("navbar-dark");
     $('#ght-navbar').addClass("navbar-light ght-add-navbar");
 
-    $('#ghouse_add_form').submit(function(e){
-        if (posLat === undefined || posLng === undefined){
-                    $.notify({
-                        title: '<strong>Error</strong>',
-                        message: "Il faut que vous choisit la position de votre maison dans google map."
-                    }, {
-                        offset: {
-                            x: 5,
-                            y: 70
-                        },
-                        type: 'danger'
-                    });
+    $('#ghouse_add_form').submit(function (e) {
+        if (posLat === undefined || posLng === undefined) {
+            $.notify({
+                title: '<strong>Erreur</strong>',
+                message: "Il faut que vous choisit la position de votre maison dans google map."
+            }, {
+                offset: {
+                    x: 5,
+                    y: 70
+                },
+                type: 'danger'
+            });
             e.preventDefault();
             return false;
         }
