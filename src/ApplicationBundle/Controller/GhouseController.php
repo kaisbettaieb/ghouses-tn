@@ -22,54 +22,68 @@ class GhouseController extends Controller
             $ghouse = new Ghouse();
             $ghouse_add_form = $this->createForm(GhouseForm::class, $ghouse);
             $ghouse_add_form->handleRequest($request);
-            $is_added = $this->addGhouse($ghouse_add_form, $ghadmin, $ghouse);
+            if ($ghouse_add_form->isSubmitted()) {
+                $is_added = $this->addGhouse($ghadmin, $ghouse);
+            }
             return $this->render('@Application/GhouseView/ajouter-ghouse.html.twig', array('ghouse_add_form' => $ghouse_add_form->createView(),
                 'is_added' => $is_added));
         }
         return $this->redirectToRoute('application_front_homepage');
     }
 
-    public function addGhouse($ghouse_add_form, $user, $ghouse)
+    public function addGhouse($user, $ghouse)
     {
-        if ($ghouse_add_form->isSubmitted()) {
-            $ghouse->setGhouseAdmin($user->getId());
-            $ghouse->setIsValidated(0);
-            $gimages = $ghouse->getGhImages();
-            $gimages = $gimages->toArray();
-            try {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($ghouse);
-                $em->flush();
-                $this->addImages($gimages, $ghouse->getId());
-                return "Yes";
-            } catch (\Doctrine\DBAL\DBALException $e) {
-                return "Error";
-            }
 
+        $ghouse->setGhouseAdmin($user->getId());
+        $ghouse->setIsValidated(0);
+        $gimages = $ghouse->getGhImages();
+        $gimages = $gimages->toArray();
+        try {
+            foreach ($gimages as $a) {
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                $file = $a->getGhImage();
+                $is_image = false;
+                if ($file->guessExtension() == 'png' or $file->guessExtension() == 'jpeg') {
+                   $is_image = true;
+                }
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($ghouse);
+            $em->flush();
+            return $this->addImages($gimages, $ghouse->getId());
+        } catch (\Doctrine\DBAL\DBALException $e) {
+            return "Error";
         }
     }
 
-    public function addImages($ghimages, $ghid)
+    public
+    function addImages($ghimages, $ghid)
     {
         foreach ($ghimages as $a) {
             $a->setGhouseId($ghid);
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $a->getGhImage();
-            if ($file->guessExtension() == "text/plain" ){
-            }
-            dump('true');
+            /*dump("guessExtension :" . $file->guessExtension());
+            dump('getclientoriginalExention :' . $file->getClientOriginalExtension());
+            dump('getCLientMimeType : ' . $file->getClientMimeType());
+            dump('guessClientExtention : ' . $file->guessClientExtension());
+            dump('getCLientSize : ' . $file->getClientSize());*/
             // Generate a unique name for the file before saving it
-            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $fileName = md5(uniqid()) . '.' . $file->guessClientExtension();
             // Move the file to the directory where brochures are stored
-            $uploadPath = $this->container->getParameter('kernel.project_dir') . '/web/uploads/'.$ghid;
-
+            $uploadPath = $this->container->getParameter('kernel.project_dir') . '/web/uploads/' . $ghid;
             $file->move(
                 $uploadPath,
                 $fileName);
-            $a->setPath($uploadPath.$fileName);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($a);
-            $em->flush();
+            $a->setPath($uploadPath . $fileName);
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($a);
+                $em->flush();
+                return "Yes";
+            } catch (\Doctrine\DBAL\DBALException $e) {
+                return "Error";
+            }
         }
     }
 }

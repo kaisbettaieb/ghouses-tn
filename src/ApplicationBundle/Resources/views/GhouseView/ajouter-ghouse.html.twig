@@ -90,7 +90,7 @@
             <button class="btn btn-deep-orange " type="submit" id="ajouter">Envoyer</button>
         </div>
         {{ form_end(ghouse_add_form) }}
-        <style>
+        <!--<style>
             .thumb {
                 height: 75px;
                 border: 1px solid #000;
@@ -99,8 +99,7 @@
         </style>
         <input type="file" id="ghouse_images" name="ghouse_images[]" multiple/>
         <div id="images_preview" style="height:95px; border:1px solid #000;">
-        </div>
-    </div>
+        </div>-->
     </div>
 </main>
 
@@ -111,85 +110,13 @@
         src="https://maps.google.com/maps/api/js?key=AIzaSyBKjHhqdkrPFmPrEmbVYMwTVoq-ku_cUQI&callback=initMap"></script>
 <script type="text/javascript" src="{{ asset('assets/js/ajouter-ghouse.js') }}"></script>
 
-<script>
-    $(document).ready(function () {
-
-        var imagesCount = '{{ ghouse_add_form.gh_images|length }}';
-
-        // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-        var $container = $('div#ghouse_form_gh_images');
-
-        // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
-        var index = $container.find(':input').length;
-
-        // $(this).parents("div.calendar-event").addClass("special-event");
-
-        var $container_image;
-
-        // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-        $('#add_image').click(function (e) {
-            addImage($container);
-            e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-            return false;
-        });
-
-        // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-        if (index != 0) {
-            $container.children('div').each(function () {
-                addDeleteLink($(this));
-            });
-        }
-
-        // La fonction qui ajoute un formulaire GhouseImages
-        function addImage($container) {
-            // Dans le contenu de l'attribut « data-prototype », on remplace :
-            // - le texte "__name__label__" qu'il contient par le label du champ
-            // - le texte "__name__" qu'il contient par le numéro du champ
-            var template = $container.attr('data-prototype')
-                .replace(/__name__label__/g, 'Image n°' + (index + 1))
-                .replace(/__name__/g, index)
-            ;
-
-            // On crée un objet jquery qui contient ce template
-            var $prototype = $(template);
-            $prototype.addClass('md-form');
-            // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-            addDeleteLink($prototype);
-
-            // On ajoute le prototype modifié à la fin de la balise <div>
-            $container.append($prototype);
-
-            // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-            index++;
-        }
-
-        // La fonction qui ajoute un lien de suppression d'une catégorie
-        function addDeleteLink($prototype) {
-            // Création du lien
-            var $deleteLink = $('<a href="#" class="btn btn-danger btn-sm pull-right">X</a>');
-
-            // Ajout du lien
-            $prototype.append($deleteLink);
-
-            // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
-            $deleteLink.click(function (e) {
-                $prototype.remove();
-
-                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-                return false;
-            });
-        }
-    });
-
-</script>
-
 
 {% if is_added == "Error" %}
     <script>
         $(document).ready(function () {
             {
                 $.notify({
-                    title: '<strong>Error</strong>',
+                    title: '<strong>Erreur</strong>',
                     message: 'Un probleme est subis lors de votre action, veuillez ressayer plus tard.'
                 }, {
                     offset: {
@@ -197,6 +124,26 @@
                         y: 70
                     },
                     type: 'danger'
+                });
+            }
+
+
+        });
+    </script>
+{% endif %}
+{% if is_added == "ErrorIMGExtension" %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>Erreur</strong>',
+                    message: "Veuillez verifier les images que vous avez uploadez, On accepte seule les images avec l'extension .jpeg, .jpg, .png."
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70
+                    },
+                    type: 'warning'
                 });
             }
 

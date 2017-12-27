@@ -15,7 +15,7 @@ class GhouseImagesForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image', FileType::class);
+            ->add('image', FileType::class, array('attr' => array("accept" => "image/*") ));
 
     }
 
