@@ -67,7 +67,7 @@ $(document).ready(function () {
     var imagesCount = '{{ ghouse_add_form.gh_images|length }}';
 
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-   // var $container = $('div#ghouse_form_gh_images');
+   var $container = $('div#ghouse_form_gh_images');
 
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
     var index = $container.find(':input').length;
