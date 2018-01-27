@@ -124,4 +124,8 @@ class FrontViewController extends Controller
         return "Il faut que vous accepter les <strong>Les Conditions Générales d'Utilisation</strong>";
     }
 
+    public function allGhousesAction(Request $request){
+
+    }
+
 }

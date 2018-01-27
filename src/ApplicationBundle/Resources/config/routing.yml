@@ -1,6 +1,9 @@
 application_front_homepage:
     path:     /
     defaults: { _controller: ApplicationBundle:FrontView:home }
+application_ghouse_all:
+    path:    /all-ghouses
+    defaults: { _controller: ApplicationBundle:FrontView:allGhouses}
 
 #routing pour simple utilisateur
 application_userback_dashboard:
@@ -37,8 +40,6 @@ application_propBack_register:
 application_ghouse_front:
     path:     /ghouse/{id}
     defaults: { _controller: ApplicationBundle:Ghouse:ghouse }
-application_ghouse_add:
-    path:     /ghouseAdd
-    defaults: { _controller: ApplicationBundle:Ghouse:ghouseAdd }
 application_logout:
     path:     /logout
+

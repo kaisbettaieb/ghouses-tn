@@ -33,13 +33,10 @@ class GhouseImages implements UserInterface, \Serializable
     private $path;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="ghouse_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Ghouse")
+     * @ORM\JoinColumn(name="ghouse_id", referencedColumnName="id")
      */
     private $ghouseId;
-
-
 
 
     /**
@@ -127,7 +124,7 @@ class GhouseImages implements UserInterface, \Serializable
     {
         return serialize(array(
             $this->id,
-            $this->ghimageSrc,
+            $this->path,
             $this->ghouseId,
             // see section on salt below
             // $this->salt,
@@ -139,7 +136,7 @@ class GhouseImages implements UserInterface, \Serializable
     {
         list (
             $this->id,
-            $this->ghimageSrc,
+            $this->path,
             $this->ghouseId,
             // see section on salt below
             // $this->salt

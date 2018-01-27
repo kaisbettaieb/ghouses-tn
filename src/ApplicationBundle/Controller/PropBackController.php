@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use ApplicationBundle\Entity\Ghouse;
+use ApplicationBundle\Form\GhouseForm;
 
 class PropBackController extends Controller
 {
@@ -33,7 +35,7 @@ class PropBackController extends Controller
             ->getForm();
 
         $login_form->handleRequest($request);
-        
+
         if ($login_form->isSubmitted()) {
             $email = $login_form->get('email')->getData();
             $check_user = $this->getDoctrine()
@@ -79,7 +81,82 @@ class PropBackController extends Controller
         if (false === $this->get('security.authorization_checker')->isGranted('ROLE_GHADMIN')) {
             return $this->redirectToRoute('application_propback_login');
         }
-        return $this->render('@Application/PropBackView/maison.html.twig');
+
+        $ghadmin = $this->getUser();
+        $ghouse = new Ghouse();
+        $ghouse_add_form = $this->createForm(GhouseForm::class, $ghouse);
+        $ghouse_add_form->handleRequest($request);
+        $ghouse->setDateCreated();
+        if ($ghouse_add_form->isSubmitted()) {
+            if (!$this->addGhouse($ghadmin, $ghouse)) {
+                $this->addFlash("warning", "Un probleme est subis lors de votre action, veuillez ressayer plus tard");
+                return $this->redirectToRoute('application_propback_maison');
+            }
+            $this->addFlash("success", "Votre maison a ete ajoute avec success, Une validation par l'administrateur est requis avant que votre maison peut etre lister dans notre site.");
+
+        }
+        return $this->render('@Application/PropBackView/maison.html.twig', array('ghouse_add_form' => $ghouse_add_form->createView()));
+    }
+
+    public function addGhouse($user, $ghouse)
+    {
+
+        $ghouse->setGhouseAdmin($user->getId());
+        $ghouse->setIsValidated(0);
+        $gimages = $ghouse->getGhImages();
+        $gimages = $gimages->toArray();
+        if (empty($gimages) or count($gimages) < 3) {
+            $this->addFlash("warning", "Veuillez ajouter au moin troi images pour que vous pouvez ajouter votre maison.");
+            return false;
+        }
+        try {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($ghouse);
+            $em->flush();
+            foreach ($gimages as $g) {
+                $g->setGhouseId($ghouse);
+                $ghouse->setGhImages($g);
+            }//taw bdit bl foreign key
+            $this->addImages($gimages, $ghouse->getId());
+            foreach ($gimages as $g) {
+                $em->persist($g);
+                $em->flush();
+            }
+            return true;
+
+        } catch (\Doctrine\DBAL\DBALException $e) {
+            return false;
+        }
+    }
+
+    public
+    function addImages($ghimages,$id)
+    {
+        $re = true;
+        foreach ($ghimages as $a) {
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $a->getGhImage();
+            $fileName = md5(uniqid()) . '.' . $file->guessClientExtension();
+            // Move the file to the directory where brochures are stored
+            $uploadPath = /*$this->container->getParameter('kernel.project_dir') . */
+                'uploads/' . $id;
+            $file->move(
+                $uploadPath,
+                $fileName);
+            $a->setPath($uploadPath . $fileName);
+            /*try {
+                $this->getDoctrine()->resetManager();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($a);
+                $em->flush();
+                $re = true;
+            } catch (\Doctrine\DBAL\DBALException $e) {
+                $this->addFlash("warning", "Un probleme est subis lors de l'ajout des images, veuillez ressayer plus tard.");
+                $re = false;
+            }*/
+        }
+        return $re;
     }
 
     public

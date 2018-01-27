@@ -128,7 +128,15 @@ class Ghouse
      */
     private $is_validated;
 
-    public function __construct() {
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="dateCreated", type="date")
+     */
+    private $dateCreated;
+
+    public function __construct()
+    {
         $this->gh_images = new ArrayCollection();
     }
 
@@ -524,6 +532,29 @@ class Ghouse
     {
         $this->gh_images->add($gh_images);
         return $this;
+    }
+
+    /**
+     * Set DateCreated
+     *
+     * @param None
+     *
+     * @return Ghouse
+     */
+    public function setDateCreated()
+    {
+        $this->dateCreated = new \DateTime("now");
+        return $this;
+    }
+
+    /**
+     * Get DateCreates
+     *
+     * @return DateTime
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
     }
 }
 

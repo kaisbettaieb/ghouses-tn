@@ -19,113 +19,152 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
+                    {{ form_start(ghouse_add_form, {'attr' : {'id' : 'ghouse_add_form' } }) }}
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Edit Profile</h4>
-                                <p class="category">Complete your profile</p>
+                                <h4 class="title text-center">Ajouter Maison d'hote</h4>
+                                <p class="category">text</p>
                             </div>
                             <div class="card-content">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Company (disabled)</label>
-                                                <input type="text" class="form-control" disabled>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            {{ form_widget(ghouse_add_form.nom, {'attr': { 'class' : 'form-control'} }) }}
+                                            <label class="control-label">Nom de la maison</label>
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Username</label>
-                                                <input type="text" class="form-control">
-                                            </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            {{ form_widget(ghouse_add_form.nom_prenom_prop, {'attr': { 'class' : 'form-control' } }) }}
+                                            <label class="control-label">Nom et prenom du proprietaire</label>
                                         </div>
-                                        <div class="col-md-4">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            {{ form_widget(ghouse_add_form.address, {'attr': { 'class' : 'form-control' } }) }}
+                                            <label class="control-label" for="adresse">Adresse de la maison </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            {{ form_widget(ghouse_add_form.email, {'attr': { 'class' : 'form-control' } }) }}
+                                            <label class="control-label">Email</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="map-container" class="z-depth-1-half map-container"
+                                             style="height: 400px"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            {{ form_widget(ghouse_add_form.homeNum, {'attr': { 'class' : 'form-control' } }) }}
+                                            <label class="control-label" for="phone-fixe">Telephone fixe</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            {{ form_widget(ghouse_add_form.mobileNum, {'attr': { 'class' : 'form-control' } }) }}
+                                            <label class="control-label" for="phone-portable">Telephone portable</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">A propos de la maison</label>
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Email address</label>
-                                                <input type="email" class="form-control">
+                                                <label class="control-label">Une description de la maison d'hote</label>
+                                                {{ form_widget(ghouse_add_form.aPropos, {'attr': { 'rows' : '5', 'class': 'form-control'} }) }}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Condition géneral de
+                                                la maisons</label>
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Fist Name</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Last Name</label>
-                                                <input type="text" class="form-control">
+                                                <label class="control-label">Veuillez séparer les conditions par un <
+                                                    <span style="color: red; font-size: 25px">;</span> ></label>
+                                                {{ form_widget(ghouse_add_form.conditions, {'attr': { 'rows' : '5', 'class': 'form-control' } }) }}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Qu'est-ce que la maison offre</label>
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Adress</label>
-                                                <input type="text" class="form-control">
+                                                <label class="control-label"> Veuillez séparer les offres par un <
+                                                    <span style="color: red; font-size: 25px">;</span> ></label>
+                                                {{ form_widget(ghouse_add_form.options, {'attr': { 'class' : 'form-control',  'rows' : '5' } }) }}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">City</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Country</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Postal Code</label>
-                                                <input type="text" class="form-control">
-                                            </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group label-floating">
+                                            {{ form_widget(ghouse_add_form.prixNuit, {'attr': { 'class' : 'form-control' } }) }}
+                                            <label class="control-label">Prix par nuit en DT</label>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>About Me</label>
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label"> Lamborghini Mercy, Your chick she so
-                                                        thirsty, I'm in that two seat Lambo.</label>
-                                                    <textarea class="form-control" rows="5"></textarea>
-                                                </div>
-                                            </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Les mots clés</label>
+                                        </div>
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Les mots clés qui sont en relation avec
+                                                votre
+                                                maison, veuillez mettre des mots precis.Veuillez séparer les
+                                                mots par un
+                                                <
+                                                <span style="color: red; font-size: 25px">;</span> ></label>
+                                            {{ form_widget(ghouse_add_form.mots_cles, {'attr': { 'class' : 'form-control', 'rows' : '5' } }) }}
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
-                                    <div class="clearfix"></div>
-                                </form>
+                                </div>
+                                <div class="row">
+                                    {{ form_widget(ghouse_add_form.mapLat, {'attr': { 'style' : 'display:none' } }) }}
+                                    {{ form_widget(ghouse_add_form.mapLng, {'attr': { 'style' : 'display:none' } }) }}
+                                </div>
                             </div>
+                            <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card card-profile">
-                            <div class="card-avatar">
-                                <a href="#pablo">
-                                    <img class="img" src="../assets/img/faces/marc.jpg"/>
-                                </a>
-                            </div>
                             <div class="content">
-                                <h6 class="category text-gray">CEO / Co-Founder</h6>
-                                <h4 class="card-title">Alec Thompson</h4>
+                                <h4 class="card-title">Ajouter des Images de votre maison d'hote</h4>
                                 <p class="card-content">
-                                    Don't be scared of the truth because we need to restart the human foundation in
-                                    truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
-                                    back is...
+                                    Veuillez choisir au moin 3 images.
+                                    Les conditions:<br>
+                                <ul>
+                                    <li>Les images doivent étres claire.</li>
+                                    <li>Les images doivent étres réelles</li>
+                                    <li>Les images doivent avoir l'extension <br><span
+                                                style="color: red; font-size: 25px"> .png</span> ou <span
+                                                style="color: red; font-size: 25px">.jpeg</span></li>
+                                </ul>
+                                {{ form_widget(ghouse_add_form.gh_images) }}
+                                <a href="#" id="add_image" class="btn btn-default btn-md">Joindre une photo</a>
                                 </p>
-                                <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
                             </div>
                         </div>
                     </div>
+                    {{ form_end(ghouse_add_form) }}
                 </div>
             </div>
         </div>
@@ -153,6 +192,49 @@
     </div>
 </div>
 {% include '@Application/PropBackView/footer.html.twig' %}
+<script async defer
+        src="https://maps.google.com/maps/api/js?key=AIzaSyBKjHhqdkrPFmPrEmbVYMwTVoq-ku_cUQI&callback=initMap"></script>
+<script type="text/javascript" src="{{ asset('assets/js/ajouter-ghouse.js') }}"></script>
+
+{% for label,message in app.flashes %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>'+'{{ label|upper }}'+'</strong>',
+                    message: '{{ message[0] }}'
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70
+                    },
+                    type: '{{ label }}'
+                });
+            }
+        });
+    </script>
+    {% if label == "ErrorIMGExtension" %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>'+'{{ label|upper }}'+'</strong>',
+                    message: {{ message[0] }}
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70
+                    },
+                    type: danger
+                });
+            }
+
+
+        });
+    </script>
+    {% endif %}
+{% endfor %}
+
 </body>
 
 </html>

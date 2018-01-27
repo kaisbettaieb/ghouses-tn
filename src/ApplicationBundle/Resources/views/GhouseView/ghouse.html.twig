@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}Guesthouse Carthage{% endblock %}</title>
+    <title>{% block title %}{{ maison.nom }} | Maison d'hôte{% endblock %}</title>
     {% include '@Application/FrontView/header.html.twig' %}
     <style>
         .carousel-item img {
@@ -105,7 +105,7 @@
                     </div>
                     <div class="row mt-2 ml-1 mr-1">
                         <div class="mr-auto">
-                            <i class="fa fa-money mr-1" aria-hidden="true"></i>100 DT La nuit</br>
+                            <i class="fa fa-money mr-1" aria-hidden="true"></i>{{ maison.prixNuit }} DT La nuit</br>
                             <i class="fa fa-star" aria-hidden="true"></i>
                             <i class="fa fa-star" aria-hidden="true"></i>
                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -113,7 +113,7 @@
                             <i class="fa fa-star-half-o mr-1" aria-hidden="true"></i> 20 Commentaires
                         </div>
                         <div class="ml-auto">
-                            <button class="btn btn-default btn-md">Verifier</button>
+                            <button class="btn btn-default btn-md" onclick="alert('Pas encore');">Verifier</button>
                         </div>
                     </div>
                     <hr class="my-3">
@@ -137,35 +137,30 @@
                     <!--/.Carousel Wrapper-->
                 </div>
                 <div class="col-md-8 col-sm-12">
-                    <h3 class="mb-0 my-2">Maison a Carthage:</h3>
-                    <p> Carthage, Tunis 2026</p>
+                    <h3 class="mb-0 my-2">{{ maison.nom }} :</h3>
+                    <p> {{ maison.address }}</p>
                     <hr class="my-3 mt-3">
-                    <p class="my-2"><i class="fa fa-address-card-o" aria-hidden="true"></i> Nom et prenom proprietaire
+                    <p class="my-2"><i class="fa fa-address-card-o" aria-hidden="true"></i> {{ maison.nomPrenomProp }}
                     </p>
-                    <p class="my-2"><i class="fa fa-automobile" aria-hidden="true"></i> Carthage, Tunis 2026</p>
-                    <p class="my-2"><i class="fa fa-mobile-phone" aria-hidden="true"></i> +216 XX XXX XXX</p>
-                    <p class="my-2"><i class="fa fa-phone" aria-hidden="true"></i> +216 XX XXX XXX</p>
+                    <p class="my-2"><i class="fa fa-automobile" aria-hidden="true"></i> {{ maison.address }}</p>
+                    <p class="my-2"><i class="fa fa-mobile-phone" aria-hidden="true"></i> +216 {{ maison.mobileNum }}</p>
+                    <p class="my-2"><i class="fa fa-phone" aria-hidden="true"></i> +216 {{ maison.homeNum }}</p>
                     <hr class="my-3 mt-3">
                     <h5 class="display-6"> A propos de la maison d'hôte </h5>
-                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                        Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
-                        sit amet quam egestas semper. Aenean ultricies mi vitae
-                        est. Mauris placerat eleifend leo.</p>
+                    <p>{{ maison.aPropos }}.</p>
                     <hr class="my-2">
                     <h5 class="display-6"> Ce qui est fourni</h5>
+                    <p> {{ maison.options }}</p>
                     <p class="my-2"><i class="fa fa-bed" aria-hidden="true"></i> 3 chambres à coucher </p>
                     <p class="my-2"><i class="fa fa-car" aria-hidden="true"></i> Un garage pour la voiture </p>
                     <p class="my-2"><i class="fa fa-child" aria-hidden="true"></i> Une chambre à coucher pour bébé </p>
                     <hr class="my-3">
                     <h5 class="display-6"> Conditions géneral</h5>
-                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                        Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
-                        sit amet quam egestas semper. Aenean ultricies mi vitae
-                        est. Mauris placerat eleifend leo.
+                    <p>{{ maison.conditions }}
                     </p>
                     <hr class="my-3">
                     <h5 class="display-6"> Lieu</h5>
-                    <div id="map-container" class="z-depth-1-half map-container" style="height: 400px"></div>
+                    <div id="map-container" class="z-depth-1-half map-container" style="height: 400px" data-maplng="{{ maison.mapLng }}" data-maplat="{{ maison.mapLat }}"></div>
                     <hr class="my-3">
                     <h5 class="display-6"> Commentaires </h5>
                     <section id="ght-commentaires">
@@ -314,9 +309,10 @@
                                 <hr>
                                 <!--Text-->
                                 <p class="card-text ">test exemple.</p>
-                                <a href={{ url('application_ghouse_front', {'id':'1'}) }}" class=" d-flex
-                                   flex-row-reverse">
-                                <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i></h5>
+                                <a href="{{ url('application_ghouse_front', {'id':'1'}) }}"
+                                   class="d-flex flex-row-reverse">
+                                    <h5 class="waves-effect waves-dark p-2">Voir <i class="fa fa-chevron-right"></i>
+                                    </h5>
                                 </a>
                             </div>
                             <!--/.Card content-->
