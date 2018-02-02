@@ -4,6 +4,9 @@ application_front_homepage:
 application_ghouse_all:
     path:    /all-ghouses
     defaults: { _controller: ApplicationBundle:FrontView:allGhouses}
+application_ghouse_all_newest:
+    path:    /all-ghouses/newest
+    defaults: { _controller: ApplicationBundle:FrontView:allGhousesNewest }
 
 #routing pour simple utilisateur
 application_userback_dashboard:

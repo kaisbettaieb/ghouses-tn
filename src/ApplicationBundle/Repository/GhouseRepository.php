@@ -10,4 +10,13 @@ namespace ApplicationBundle\Repository;
  */
 class GhouseRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllValidated()
+    {
+        return $this->findBy(array('is_validated' => 1));
+    }
+
+    public function findAllValidatedNewest()
+    {
+        return $this->findBy(array('is_validated' => 1), array('dateCreated' => 'DESC'));
+    }
 }

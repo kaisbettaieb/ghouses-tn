@@ -1,6 +1,6 @@
 new WOW().init();
-$('#load-more').click(function() {
-   dt = ' <div class="row mt-4">\
+$('#load-more').click(function () {
+    dt = ' <div class="row mt-4">\
 <div class="card mr-3" style="width:265px;">\
   <!--Card image-->\
   <div class="view overlay hm-white-slight">\
@@ -97,8 +97,15 @@ $('#load-more').click(function() {
           </div>\
         </div>\
         <!--/.Card content-->';
-        var new_row = '<div class="row mt-4 row-data" id="ght-new-row" style="display: none;"> </div>';
-        $(new_row).appendTo('#ght-explore-present').fadeIn('slow');
-        jQuery('.row-data').html(dt, 5000);
+    var new_row = '<div class="row mt-4 row-data" id="ght-new-row" style="display: none;"> </div>';
+    $(new_row).appendTo('#ght-explore-present').fadeIn('slow');
+    jQuery('.row-data').html(dt, 5000);
 
 });
+
+/*$(document).ready(function () {
+    $('#newer_ghouses').click(function () {
+        alert("hi");
+    });
+
+});*/

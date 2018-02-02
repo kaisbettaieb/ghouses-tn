@@ -12,30 +12,6 @@ use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
  */
 class GhUserRepository extends \Doctrine\ORM\EntityRepository //implements UserLoaderInterface
 {
-    /*public function verifyLogin($username,$password ){
-       $check_user = $this->getEntityManager()
-            ->getRepository(GhUser::class)
-            ->findOneBy(array('username' => $username));
-        $check_user =  $this->getEntityManager()
-            ->createQuery(
-                'SELECT * FROM ApplicationBundle:GhUser'
-            )
-            ->getResult();
-
-        if ($check_user){
-            #$check_password = $passwordEncoder->isPasswordValid($check_user, $login_form->get('password')->getData());
-            $check_password  = $this->get('security.password_encoder')->isPasswordValid($check_user, $password);
-            if ($check_password){
-                return true;
-            }
-            return false;
-            ){
-                echo 'password equal';
-            }
-        }
-        return false;
-
-    }*/
     public function loadUserByUsername($username, $password, $passwordEncoder)
     {
         $user = $this->createQueryBuilder('u')
