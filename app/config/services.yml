@@ -29,8 +29,11 @@ services:
         autowire: true # or define your controller constructor and configure its arguments explicitly
         tags: ['controller.service_arguments']
     ApplicationBundle\Controller\FrontViewController:
-            autowire: true # or define your controller constructor and configure its arguments explicitly
-            tags: ['controller.service_arguments']
+        autowire: true # or define your controller constructor and configure its arguments explicitly
+        tags: ['controller.service_arguments']
     ApplicationBundle\Controller\UserBackController:
-                autowire: true # or define your controller constructor and configure its arguments explicitly
-                tags: ['controller.service_arguments']
+        autowire: true # or define your controller constructor and configure its arguments explicitly
+        tags: ['controller.service_arguments']
+    #ApplicationBundle\Repository\GhUserRepository:
+        #autowire: true # or define your controller constructor and configure its arguments explicitly
+        #tags: ['controller.service_arguments']

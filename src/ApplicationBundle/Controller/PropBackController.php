@@ -100,7 +100,6 @@ class PropBackController extends Controller
 
     public function addGhouse($user, $ghouse)
     {
-
         $ghouse->setGhouseAdmin($user->getId());
         $ghouse->setIsValidated(0);
         $gimages = $ghouse->getGhImages();
@@ -109,31 +108,25 @@ class PropBackController extends Controller
             $this->addFlash("warning", "Veuillez ajouter au moin troi images pour que vous pouvez ajouter votre maison.");
             return false;
         }
-        try {
+        foreach ($gimages as $g) {
+            $g->setGhouseId($ghouse);
+            $ghouse->setGhImages($g);
+        }//taw bdit bl foreign key
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ghouse);
-            $em->flush();
-            foreach ($gimages as $g) {
-                $g->setGhouseId($ghouse);
-                $ghouse->setGhImages($g);
-            }//taw bdit bl foreign key
-            $this->addImages($gimages, $ghouse->getId());
-            foreach ($gimages as $g) {
-                $em->persist($g);
-                $em->flush();
-            }
-            return true;
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($ghouse);
+        $this->addImages($gimages, $ghouse->getNom());
+        $em->flush();
 
-        } catch (\Doctrine\DBAL\DBALException $e) {
-            return false;
-        }
+
+        return true;
+
+
     }
 
     public
-    function addImages($ghimages,$id)
+    function addImages($ghimages, $id)
     {
-        $re = true;
         foreach ($ghimages as $a) {
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $a->getGhImage();
@@ -144,19 +137,9 @@ class PropBackController extends Controller
             $file->move(
                 $uploadPath,
                 $fileName);
-            $a->setPath($uploadPath . $fileName);
-            /*try {
-                $this->getDoctrine()->resetManager();
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($a);
-                $em->flush();
-                $re = true;
-            } catch (\Doctrine\DBAL\DBALException $e) {
-                $this->addFlash("warning", "Un probleme est subis lors de l'ajout des images, veuillez ressayer plus tard.");
-                $re = false;
-            }*/
+            $a->setPath($uploadPath ."/". $fileName);
         }
-        return $re;
+        return $ghimages;
     }
 
     public

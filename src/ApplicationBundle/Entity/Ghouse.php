@@ -26,7 +26,7 @@ class Ghouse
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, unique=true)
      */
     private $nom;
 
@@ -517,8 +517,8 @@ class Ghouse
 
     /**
      * @Assert\Type(type="ApplicationBundle\Entity\GhouseImages")
-     * @Assert\Valid()
      * Un maison a beaucoup des images.
+     * @ORM\OneToMany(targetEntity="GhouseImages", mappedBy="ghouseId", cascade={"persist", "remove" })
      */
     protected $gh_images;
 

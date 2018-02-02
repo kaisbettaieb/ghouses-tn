@@ -33,7 +33,7 @@ class GhouseImages implements UserInterface, \Serializable
     private $path;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ghouse")
+     * @ORM\ManyToOne(targetEntity="Ghouse", inversedBy="gh_images")
      * @ORM\JoinColumn(name="ghouse_id", referencedColumnName="id")
      */
     private $ghouseId;

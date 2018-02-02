@@ -2,6 +2,7 @@
 
 namespace ApplicationBundle\Controller;
 
+use ApplicationBundle\Entity\Ghouse;
 use ApplicationBundle\Entity\GhUser;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -87,7 +88,6 @@ class FrontViewController extends Controller
     }
 
 
-
     public function registerUser($form, $encoder)
     {
         if ($form->get('check_conditions')->getData()) {
@@ -124,8 +124,52 @@ class FrontViewController extends Controller
         return "Il faut que vous accepter les <strong>Les Conditions Générales d'Utilisation</strong>";
     }
 
-    public function allGhousesAction(Request $request){
+    public function allGhousesAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $login_form = $this->get('form.factory')
+            ->createNamedBuilder('login_form')
+            ->add('username', TextType::class)
+            ->add('password', PasswordType::class)
+            ->getForm();
 
+        $register_form = $this->get('form.factory')
+            ->createNamedBuilder('register_form')
+            ->add('email', EmailType::class)
+            ->add('password', PasswordType::class)
+            ->add('verify_password', PasswordType::class)
+            ->add('username', TextType::class)
+            ->add('check_conditions', CheckboxType::class)
+            ->getForm();
+        $login_form->handleRequest($request);
+        $register_form->handleRequest($request);
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            if ($request->request->has('login_form')) {
+                if ($login_form->isSubmitted()) {
+                    $username = $login_form->get('username')->getData();
+                    $password = $login_form->get('password')->getData();
+                    $check_user = $this->getDoctrine()
+                        ->getRepository(GhUser::class)
+                        ->loadUserByUsername($username, $password, $passwordEncoder);
+                    if (!$check_user) {
+                        $this->addFlash("warning", "Veuillez verifier vos informations");
+                        return $this->redirectToRoute("application_ghouse_all");
+                    }
+                    $this->addFlash("success", "Vous etes connectés");
+                    $token = new UsernamePasswordToken($check_user, null, 'ghuser_firewall', $check_user->getRoles());
+                    $this->get('security.token_storage')->setToken($token);
+                    $this->get('session')->set('_security_main', serialize($token));
+                    $event = new InteractiveLoginEvent($request, $token);
+                    $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
+
+                    return $this->redirectToRoute("application_ghouse_all");
+                }
+            }
+        }
+        $ghouses = $this->getDoctrine()
+            ->getRepository(Ghouse::class)
+            ->findAll();
+        return $this->render('@Application/FrontView/all-ghouse.html.twig', array('login_form' => $login_form->createView(),
+            'register_form' => $register_form->createView(),
+            'ghouses' => $ghouses));
     }
-
 }
