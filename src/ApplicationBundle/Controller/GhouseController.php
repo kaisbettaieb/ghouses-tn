@@ -21,7 +21,7 @@ class GhouseController extends Controller
             return $this->render('@Application/GhouseView/ghouse.html.twig', array('maison' => $check_maison));
         }
         return $this->render('@Application/404.html.twig');
-
+    
 
     }
 

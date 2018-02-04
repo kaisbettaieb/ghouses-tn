@@ -16,6 +16,20 @@
 </div>
 <main class="mt-5">
     <div class="container">
+        <div class="row d-flex justify-content-around">
+            <div class="col-md-4 col-sm-12">
+                <div class="md-form white">
+                    <i class="fa fa-search prefix"></i>
+                    <input type="text" id="searchInput" onkeyup="searchInput(this)" class="form-control"
+                           placeholder="Chercher maison par nom"
+                           list="suggestions">
+                </div>
+            </div>
+        </div>
+        <datalist id="suggestions">
+        </datalist>
+        <hr class="my-4">
+
         <section id="ght-explore-choice">
             <h3 class="mb-0" id="display-10">Explorer GuestHouses:</h3>
             <div class="row">
@@ -39,7 +53,7 @@
                         </a>
                     </div>
                 </div>
-                <a href="{{ url('application_ghouse_all_newest') }}">
+                <a href="#">
                     <div class="media z-depth-1-half my-4 mr-3">
                         <img src="{{ asset("assets/img/gh-snaps/1.jpg") }}" class="d-flex mr-3 img-fluid rounded-left"
                              width="100"
@@ -97,7 +111,6 @@
             <button class="btn btn-primary d-flex justify-content-center btn-sm" id="load-more"><i
                         class="fa fa-cloud-download" aria-hidden="true"></i></button>
         </div>
-
     </div>
 </main>
 
@@ -108,23 +121,84 @@
 </script>
 <script type="text/javascript" src="{{ asset('assets/js/bootstrap-notify.js') }}"></script>
 {% for label,message in app.flashes %}
+    <script>
+        $(document).ready(function () {
+            {
+                $.notify({
+                    title: '<strong>' + '{{ label|upper }}' + '</strong>',
+                    message: '{{ message[0] }}'
+                }, {
+                    offset: {
+                        x: 5,
+                        y: 70
+                    },
+                    type: '{{ label }}'
+                });
+            }
+        });
+    </script>
+{% endfor %}
+
 <script>
-    $(document).ready(function () {
-        {
-            $.notify({
-                title: '<strong>' + '{{ label|upper }}' + '</strong>',
-                message: '{{ message[0] }}'
-            }, {
-                offset: {
-                    x: 5,
-                    y: 70
+    $(document).on('click', '#newer_ghouses', function () {
+        $.ajax({
+            url: '{{ (path('application_ghouse_all_param')) }}',
+            type: "POST",
+            dataType: "json",
+            data: {
+                "critere": "newest"
+            },
+            async: true,
+            success: function (data) {
+                console.log(data);
+                $('#ght-explore-present').hide();
+
+            }
+        });
+    });
+    function searchInput(data) {
+        var suggestions = $('#suggestions');
+        if (data.value) {
+            $.ajax({
+                url: '{{ (path('application_ghouse_all_param')) }}',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "critere": "input",
+                    "input": data.value
                 },
-                type: '{{ label }}'
+                async: true,
+                success: function (data) {
+                    data.forEach(function (item) {
+                        var option = document.createElement('option');
+                        var link = document.createElement('a');
+                        var href = "{{ path('application_ghouse_front', { 'id':  "placeholder" }) }}";
+                        href.replace('placeholder', item.id);
+                        link.href = href;
+                        option.value = item.nom;
+                        link.append(option);
+                        suggestions.append(link);
+                        link.onclick(function () {
+                        });
+                        console.log(link);
+                    });
+                },
+                error: function (e) {
+                    data.placeholder = "Couldn't load datalist options :(";
+                },
+                beforeSend: function (xhr) {
+                    console.log("before sent");
+                }
             });
         }
-    });
-    {% endfor %}
+        else {
+            suggestions.empty();
+        }
+
+    }
+
 </script>
+
 </body>
 
 </html>

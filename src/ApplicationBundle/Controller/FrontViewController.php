@@ -14,7 +14,11 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class FrontViewController extends Controller
 {
@@ -176,7 +180,7 @@ class FrontViewController extends Controller
 
     public function allGhousesNewestAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        $login_form = $this->get('form.factory')
+        /*$login_form = $this->get('form.factory')
             ->createNamedBuilder('login_form')
             ->add('username', TextType::class)
             ->add('password', PasswordType::class)
@@ -220,6 +224,44 @@ class FrontViewController extends Controller
             ->findAllValidatedNewest();
         return $this->render('@Application/FrontView/all-ghouse.html.twig', array('login_form' => $login_form->createView(),
             'register_form' => $register_form->createView(),
-            'ghouses' => $ghouses));
+            'ghouses' => $ghouses));*/
     }
+
+    public function allGhousesParamAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            if ($request->request->get('critere')) {
+                $critere = $request->request->get('critere');
+
+                switch ($critere) {
+                    case "newest":
+                        $ghouses = $this->getDoctrine()
+                            ->getRepository(Ghouse::class)
+                            ->findAllValidatedNewest();
+                        $rep = array();
+                        foreach ($ghouses as $g) {
+                            $rep[] = $g->serialize();
+                        }
+                        return new JsonResponse($rep);
+                        break;
+                    case "input":
+                        $txt = $request->request->get('input');
+                        $ghouses = $this->getDoctrine()
+                            ->getRepository(Ghouse::class)
+                            ->findByInput($txt);
+                        $rep = array();
+                        foreach ($ghouses as $g) {
+                            $rep[] = $g->serialize();
+                        }
+                        return new JsonResponse($rep);
+                        break;
+
+                }
+
+            }
+        }
+        return $this->redirectToRoute("application_ghouse_all");
+
+    }
+
 }

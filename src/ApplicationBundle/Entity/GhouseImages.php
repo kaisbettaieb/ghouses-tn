@@ -122,13 +122,14 @@ class GhouseImages implements UserInterface, \Serializable
     /** @see \Serializable::serialize() */
     public function serialize()
     {
-        return serialize(array(
+        return array(
+            "id" =>
             $this->id,
+            "path" =>
             $this->path,
+            "ghouseId" =>
             $this->ghouseId,
-            // see section on salt below
-            // $this->salt,
-        ));
+        );
     }
 
     /** @see \Serializable::unserialize() */

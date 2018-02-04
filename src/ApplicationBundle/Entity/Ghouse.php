@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="ghouse")
  * @ORM\Entity(repositoryClass="ApplicationBundle\Repository\GhouseRepository")
  */
-class Ghouse
+class Ghouse implements \Serializable
 {
     /**
      * @var int
@@ -555,6 +555,59 @@ class Ghouse
     public function getDateCreated()
     {
         return $this->dateCreated;
+    }
+
+    public function serialize()
+    {
+        $images = array();
+        foreach ($this->gh_images as $g) {
+            $images[] = $g->serialize();
+        }
+        return array(
+            "id" =>
+                $this->id,
+            "nom" =>
+                $this->nom,
+            "address" =>
+                $this->address,
+            "nomPrenomProp" =>
+                $this->nomPrenomProp,
+            "mobileNum" =>
+                $this->mobileNum,
+            "homeNum" =>
+                $this->homeNum,
+            "aPropos" =>
+                $this->aPropos,
+            "options" =>
+                $this->options,
+            "mapLng" =>
+                $this->mapLng,
+            "mapLat" =>
+                $this->mapLat,
+            "ghadmin_id" =>
+                $this->ghadmin_id,
+            "conditons" =>
+                $this->conditions,
+            "prixNuit" =>
+                $this->prixNuit,
+            "mots_cles" =>
+                $this->mots_cles,
+            "email" =>
+                $this->email,
+            "is_validated" =>
+                $this->is_validated,
+            "dateCreated" =>
+                $this->dateCreated,
+            "gh_images" =>
+                $images
+            // see section on salt below
+            // $this->salt,
+        );
+    }
+
+    public function unserialize($serialized)
+    {
+        // TODO: Implement unserialize() method.
     }
 }
 

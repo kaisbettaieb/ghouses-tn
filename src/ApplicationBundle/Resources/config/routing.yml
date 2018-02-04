@@ -8,6 +8,9 @@ application_ghouse_all_newest:
     path:    /all-ghouses/newest
     defaults: { _controller: ApplicationBundle:FrontView:allGhousesNewest }
 
+application_ghouse_all_param:
+    path:    /ghousesParam
+    defaults: { _controller: ApplicationBundle:FrontView:allGhousesParam }
 #routing pour simple utilisateur
 application_userback_dashboard:
     path:     /userDashboard/{id}
